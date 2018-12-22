@@ -46,10 +46,9 @@ if __name__ == "__main__":
 	
 	
 def add_data():
-    add_data = UserData(
-        Name="AAAA",
-        Description="add data",
-        CreateDate=datetime.now()
-    )
-    db.session.add(add_data)
-    db.session.commit()
+    cur.execute('''CREATE TABLE howhow
+       (ID INT PRIMARY KEY     NOT NULL,
+       NAME           TEXT    NOT NULL,
+       AGE            INT     NOT NULL,
+       ADDRESS        CHAR(50),
+       SALARY         REAL);''')
