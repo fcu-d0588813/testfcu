@@ -17,8 +17,6 @@ line_bot_api = LineBotApi('UGtou7UM2W+SYqoffaZx2dKmRGRc/H6vqz6PLHyR5ot/PsHpMLod/
 # Channel Secret
 handler = WebhookHandler('55dbfadd5f83fefc85864563e62c189e')
 
-conn = psycopg2.connect(database="d3l8u727fkdhuh",user="uskhmdlztebice",password="5714697bd569731729daa365947918c513374d064055ec40fd3644ed56963f0f",host="ec2-107-20-237-78.compute-1.amazonaws.com",port="5432")
-
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -48,9 +46,10 @@ if __name__ == "__main__":
 	
 	
 def add_data():
-    cur.execute("""CREATE TABLE howhow
-       (ID INT PRIMARY KEY     NOT NULL,
-       NAME           TEXT    NOT NULL,
-       AGE            INT     NOT NULL,
-       ADDRESS        CHAR(50),
-       SALARY         REAL);''')
+    add_data = UserData(
+        Name="AAAA",
+        Description="add data",
+        CreateDate=datetime.now()
+    )
+    db.session.add(add_data)
+    db.session.commit()
