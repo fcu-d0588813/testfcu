@@ -37,6 +37,9 @@ def callback():
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
+	add_data = UserData(Name="how",Description="add data",CreateDate=datetime.now())
+	db.session.add(add_data)
+    db.session.commit()
 
 import os
 if __name__ == "__main__":
