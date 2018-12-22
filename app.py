@@ -35,8 +35,8 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	add_data()
 	message = TextSendMessage(text=event.message.text)
+	add_data()
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
@@ -44,12 +44,7 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 	
-	
 def add_data():
-    add_data = UserData(
-        Name="AAAA",
-        Description="add data",
-        CreateDate=datetime.now()
-    )
+    add_data = UserData(Name="AAAA",Description="add data",CreateDate=datetime.now())
     db.session.add(add_data)
     db.session.commit()
