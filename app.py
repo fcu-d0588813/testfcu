@@ -48,5 +48,5 @@ if __name__ == "__main__":
 	
 def get_data():
     cur.execute("SELECT * FROM howhow;")
-	rows = cursor.fetchall()
+	rows = cur.fetchall()
 	return rows[1]
