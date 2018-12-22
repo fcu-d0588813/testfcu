@@ -20,6 +20,11 @@ line_bot_api = LineBotApi('UGtou7UM2W+SYqoffaZx2dKmRGRc/H6vqz6PLHyR5ot/PsHpMLod/
 # Channel Secret
 handler = WebhookHandler('55dbfadd5f83fefc85864563e62c189e')
 
+def get_data():
+    cur.execute("SELECT * FROM howhow;")
+	rows = cur.fetchall()
+	return rows[1]
+	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -46,7 +51,3 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 	
-def get_data():
-    cur.execute("SELECT * FROM howhow;")
-	rows = cur.fetchall()
-	return rows[1]
