@@ -9,6 +9,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
+import psycopg2
+conn = psycopg2.connect(database="d3l8u727fkdhuh",user="uskhmdlztebice",password="5714697bd569731729daa365947918c513374d064055ec40fd3644ed56963f0f",host="ec2-107-20-237-78.compute-1.amazonaws.com",port="5432")
 
 app = Flask(__name__)
 
@@ -35,18 +37,15 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
+    message = get_data()
     line_bot_api.reply_message(event.reply_token, message)
-	add_data = UserData(Name="how",Description="add data",CreateDate=datetime.now())
-	db.session.add(add_data)
-    db.session.commit()
 
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 	
-def add_data():
-    add_data = UserData(Name="AAAA",Description="add data",CreateDate=datetime.now())
-    db.session.add(add_data)
-    db.session.commit()
+def get_data():
+    cur.execute("SELECT * FROM howhow;")
+	rows = cursor.fetchall()
+	return rows[1]
