@@ -28,7 +28,6 @@ def callback():
     # handle webhook body
     try:
         handler.handle(body, signature)
-		add_data()
     except InvalidSignatureError:
         abort(400)
     return 'OK'
